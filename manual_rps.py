@@ -20,19 +20,19 @@ def get_winner(computer_choice, user_choice):
        elif computer_choice == "rock" and user_choice == "scissors":
           return "You lost. Computer's rock beats sissors."
        elif computer_choice == "rock" and user_choice == "rock":
-          return "It's a tie!"
+          return "It is a tie!"
        elif computer_choice == "paper" and user_choice == "scissors":
           return "You won! User's scissors beat paper."
        elif computer_choice == "paper" and user_choice == "rock":
           return "You lost. Computer's paper beats rock."
        elif computer_choice == "paper" and user_choice == "paper":
-          return "It's a tie!"
+          return "It is a tie!"
        elif computer_choice == "scissors" and user_choice == "rock":
           return "You won! User's rock beats scissors."
        elif computer_choice == "scissors" and user_choice == "paper":
           return "You lost. Computer's scissors beat paper."
        else:
-          return "It's a tie!"
+          return "It is a tie!"
 
 def play():
     action = get_computer_choice()
