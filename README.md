@@ -127,8 +127,11 @@ a. git clone https://github.com/chemi5t/computer-vision-rock-paper-scissors.git
 b. cd to that directory
 c. python manual_rps.py
 
-RPS code written using VS Code and saved as manual_rps.py and uploaded to GitHub along with updated README.md file.
-> ![Alt text](MS2_print_screen.jpg)
+RPS code written using VS Code and saved as manual_rps.py.
+> ![Alt text](MS4_print_screen.jpg)
+
+GitHub updated.
+> ![Alt text](MS4_GH_print_screen.jpg)
 
 ## Milestone n
 
