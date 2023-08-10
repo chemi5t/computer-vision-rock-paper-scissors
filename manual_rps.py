@@ -1,40 +1,20 @@
 import random
 
 def get_computer_choice(): # randomly pick an option between "Rock", "Paper", and "Scissors" and return the choice
-    action_list = ["Rock", "Paper", "Scissors"] # create 'action_list' of hand gesture selections
+    action_list = ["Rock", "Paper", "Scissors"]
     action = random.choice(action_list)
     return action
 
-def get_user_choice(): # User to enter a choice
+def get_user_choice(): # User to enter a choice from action_list where input is capitalised
     while True:
-      action_list = ["Rock", "Paper", "Scissors"] # create 'action_list' of hand gesture selections
-      choice = input("Please enter a choice: ").capitalize()  # Convert guess to lowercase
+      action_list = ["Rock", "Paper", "Scissors"] 
+      choice = input("Please enter a choice: ").capitalize()  # Convert input to uppercase
       if choice in action_list: # Check guess is valid from list assigned
          return choice
       else:
          print("Oops! That is not a valid input. Choose from 'rock, 'paper' or scissors.")
 
-# def get_winner(computer_choice, user_choice):
-#        if computer_choice == "rock" and user_choice == "paper":
-#           return "You won! User's paper beats rock."
-#        elif computer_choice == "rock" and user_choice == "scissors":
-#           return "You lost. Computer's rock beats sissors."
-#        elif computer_choice == "rock" and user_choice == "rock":
-#           return "It is a tie!"
-#        elif computer_choice == "paper" and user_choice == "scissors":
-#           return "You won! User's scissors beat paper."
-#        elif computer_choice == "paper" and user_choice == "rock":
-#           return "You lost. Computer's paper beats rock."
-#        elif computer_choice == "paper" and user_choice == "paper":
-#           return "It is a tie!"
-#        elif computer_choice == "scissors" and user_choice == "rock":
-#           return "You won! User's rock beats scissors."
-#        elif computer_choice == "scissors" and user_choice == "paper":
-#           return "You lost. Computer's scissors beat paper."
-#        else:
-#           return "It is a tie!"
-
-def get_winner(computer_choice, user_choice):
+def get_winner(computer_choice, user_choice): # Checks computers choice vs users and declares a winner
     if computer_choice == "Rock" and user_choice == "Paper":
         return "You won! User's Paper beats Rock."
     elif computer_choice == "Rock" and user_choice == "Scissors":
@@ -54,7 +34,7 @@ def get_winner(computer_choice, user_choice):
     else:
         return "It is a tie!"
 
-def play():
+def play(): # Pulls the functions together and plays the RPS game
     action = get_computer_choice()
     choice = get_user_choice()
     print(f"Computer's choice: {action}")
