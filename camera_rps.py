@@ -14,7 +14,7 @@ class RPS():
         model = load_model('keras_model.h5')
         cap = cv2.VideoCapture(0)
         data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-        countdown_duration = 3  # Countdown 3 seconds before capturing user's actionseconds
+        countdown_duration = 5  # Countdown 3 seconds before capturing user's actionseconds
         start_time = time.time()
         while True: 
             ret, frame = cap.read()
