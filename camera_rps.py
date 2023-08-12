@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import random
+import time
 from keras.models import load_model
 
 number_of_rounds = 5
@@ -13,6 +14,8 @@ class RPS():
         model = load_model('keras_model.h5')
         cap = cv2.VideoCapture(0)
         data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+        countdown_duration = 3  # Countdown 3 seconds before capturing user's actionseconds
+        start_time = time.time()
         while True: 
             ret, frame = cap.read()
             resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
@@ -20,6 +23,11 @@ class RPS():
             normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
             data[0] = normalized_image
             self.prediction = model.predict(data)
+            elapsed_time = time.time() - start_time
+            remaining_time = countdown_duration - elapsed_time
+            if remaining_time <= 0:
+                break
+            print(f"Countdown: {int(remaining_time)} seconds")
             cv2.imshow('frame', frame)
             # Press q to close the window
             print(self.prediction)
