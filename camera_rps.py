@@ -4,11 +4,10 @@ import random
 import time
 from keras.models import load_model
 
-number_of_rounds = 5
 
 class RPS():
-    def __init__(self, number_of_rounds = 3):
-        self.number_of_rounds = number_of_rounds
+    def __init__(self):
+        pass
     
     def get_camera_picture_of_user_action(self):
         model = load_model('keras_model.h5')
@@ -29,14 +28,11 @@ class RPS():
                 break
             print(f"Countdown: {int(remaining_time)} seconds")
             cv2.imshow('frame', frame)
-            # Press q to close the window
             print(self.prediction)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(1) & 0xFF == ord('q'): # Press q to close the window
                 break
-        # After the loop release the cap object
-        cap.release()
-        # Destroy all the windows
-        cv2.destroyAllWindows() 
+        cap.release() # After the loop release the cap object
+        cv2.destroyAllWindows() # Destroy all the windows
         return self.prediction       
     
     def get_prediction(self):
@@ -57,16 +53,36 @@ class RPS():
             return "It is a tie!"
         else:
             return "You lost."
-    
-def play(): # Pulls the functions together and plays the RPS game
+
+def play(wins_needed): # Pulls the functions together and plays the RPS game
+    computer_wins = 0 
+    user_wins = 0
     game = RPS()
-    action = game.get_computer_choice()
-    game.get_camera_picture_of_user_action()
-    choice = game.get_prediction()
-    print(f"User's choice: {choice}")
-    print(f"Computer's choice: {action}")
-    result = game.get_winner()
-    print(result)
+    while user_wins < wins_needed and computer_wins < wins_needed:
+        computer_choice = game.get_computer_choice()  # Get the computer's choice for each round
+        game.get_camera_picture_of_user_action()
+        user_choice = game.get_prediction()
+        
+        print(f"User's choice: {user_choice}")
+        print(f"Computer's choice: {computer_choice}")
+        result = game.get_winner()
+        print(result)
+        
+        if "You won!" in result:
+            user_wins += 1
+        elif "You lost." in result:
+            computer_wins += 1
+        else:
+            pass
+        
+        print(f"User Wins: {user_wins}, Computer Wins: {computer_wins}")
+
+    if user_wins >= wins_needed:
+        print("Congratulations! You won the game.")
+    else:
+        print("Computer wins the game. Better luck next time.")
+
 
 if __name__ == "__main__":
-    play()
+    wins_needed = int(input("Enter the number of wins needed to end the game: "))
+    play(wins_needed)
